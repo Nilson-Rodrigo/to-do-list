@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Menu, SquareCheck, ListTodo, Settings, Plus, Pencil, Trash2, CheckSquare, Square, X, ClipboardList } from 'lucide-react';
 import './index.css';
 
 // Usaremos localStorage como equivalente ao AsyncStorage em ambiente Web
@@ -106,16 +105,16 @@ function App() {
       {/* Sidebar */}
       <aside className="sidebar">
         <div className="sidebar-header">
-          <Menu size={24} />
+          <span style={{ fontSize: '24px' }}>☰</span>
         </div>
 
         <nav className="nav-menu" style={{ marginTop: '20px' }}>
           <div className="nav-item active">
-            <ListTodo size={20} />
+            <span style={{ fontSize: '20px' }}>📋</span>
             <span>My Tasks</span>
           </div>
           <div className="nav-item">
-            <Settings size={20} />
+            <span style={{ fontSize: '20px' }}>⚙️</span>
             <span>Settings</span>
           </div>
         </nav>
@@ -128,7 +127,7 @@ function App() {
           onClick={() => setIsDarkMode(!isDarkMode)}
           title="Toggle Dark Mode"
         >
-          {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
+          {isDarkMode ? <span style={{ fontSize: '24px' }}>☀️</span> : <span style={{ fontSize: '24px' }}>🌙</span>}
         </button>
 
         <div className="header">
@@ -146,7 +145,7 @@ function App() {
               onKeyDown={(e) => handleKeyPress(e, addTask)}
             />
             <button className="add-btn" onClick={addTask}>
-              <Plus size={18} /> Add
+              <span>➕</span> Add
             </button>
           </div>
 
@@ -173,14 +172,14 @@ function App() {
           <div className="task-list">
             {filteredTasks.length === 0 ? (
               <div className="empty-state">
-                <ClipboardList size={120} strokeWidth={1} style={{ color: 'var(--text-muted)', marginBottom: '20px', opacity: 0.5 }} />
+                <span style={{ fontSize: '80px', marginBottom: '20px', opacity: 0.5 }}>📝</span>
                 <p>Empty as my motivation on Monday 😅<br/>Let's start adding stuff!</p>
               </div>
             ) : (
               filteredTasks.map(task => (
                 <div key={task.id} className={`task-item ${editingId === task.id ? 'editing' : ''}`}>
                   <div className="task-checkbox" onClick={() => toggleTask(task.id)}>
-                    {task.completed ? <CheckSquare size={22} className="text-muted" /> : <Square size={22} />}
+                    {task.completed ? <span style={{ fontSize: '22px' }}>☑️</span> : <span style={{ fontSize: '22px' }}>⬜</span>}
                   </div>
                   
                   <div className="task-body">
@@ -204,15 +203,15 @@ function App() {
                   <div className="task-actions">
                     {editingId === task.id ? (
                        <button className="action-btn" onClick={saveEdit} title="Save">
-                        <CheckSquare size={18} />
+                        <span>💾</span>
                       </button>
                     ) : (
                       <button className="action-btn" onClick={() => startEditing(task)} title="Edit">
-                        <Pencil size={18} />
+                        <span>✏️</span>
                       </button>
                     )}
                     <button className="action-btn" onClick={() => deleteTask(task.id)} title="Delete">
-                      <Trash2 size={18} />
+                      <span>🗑️</span>
                     </button>
                   </div>
                 </div>
