@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Menu, ListTodo, Settings, Plus, Pencil, Trash2, CheckSquare, Square, ClipboardList } from 'lucide-react';
+import { Sun, Moon, Menu, ListTodo, Plus, Pencil, Trash2, CheckSquare, Square, ClipboardList } from 'lucide-react';
 import './index.css';
 
 // Usaremos localStorage como equivalente ao AsyncStorage em ambiente Web
