@@ -174,7 +174,6 @@ function App() {
             {filteredTasks.length === 0 ? (
               <div className="empty-state">
                 <ClipboardList size={120} strokeWidth={1} style={{ color: 'var(--text-muted)', marginBottom: '20px', opacity: 0.5 }} />
-                <p>Empty as my motivation on Monday 😅<br/>Let's start adding stuff!</p>
               </div>
             ) : (
               filteredTasks.map(task => (
