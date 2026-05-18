@@ -114,10 +114,6 @@ function App() {
             <ListTodo size={20} />
             <span>My Tasks</span>
           </div>
-          <div className="nav-item">
-            <Settings size={20} />
-            <span>Settings</span>
-          </div>
         </nav>
       </aside>
 
