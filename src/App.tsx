@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Menu, ListTodo, Plus, Pencil, Trash2, CheckSquare, Square, ClipboardList } from 'lucide-react';
+import { Sun, Moon, Menu, ListTodo, Plus, Pencil, Trash2, CheckSquare, Square, ClipboardList, Compass, Clock, CheckCircle2 } from 'lucide-react';
 import './index.css';
 
 // Usaremos localStorage como equivalente ao AsyncStorage em ambiente Web
@@ -10,6 +10,7 @@ interface Task {
   id: string;
   text: string;
   completed: boolean;
+  createdAt?: string;
 }
 
 type FilterType = 'all' | 'active' | 'completed';
@@ -59,7 +60,8 @@ function App() {
     const newTask: Task = {
       id: Date.now().toString(),
       text: inputValue.trim(),
-      completed: false
+      completed: false,
+      createdAt: new Date().toLocaleDateString('pt-BR')
     };
     setTasks([...tasks, newTask]);
     setInputValue('');
@@ -110,9 +112,38 @@ function App() {
         </div>
 
         <nav className="nav-menu" style={{ marginTop: '20px' }}>
-          <div className="nav-item active">
+          <div className="nav-item active" onClick={() => setFilter('all')}>
             <ListTodo size={20} />
             <span>My Tasks</span>
+          </div>
+
+          <div className="nav-item" onClick={() => alert('Área de Explorar em breve!')}>
+            <Compass size={20} />
+            <span>Explorar</span>
+          </div>
+
+          <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, paddingLeft: '16px', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Histórico
+            </span>
+            {tasks.slice().reverse().map(task => (
+              <div 
+                key={task.id} 
+                className="nav-item" 
+                style={{ 
+                  padding: '8px 16px', 
+                  fontSize: '0.85rem',
+                  opacity: 0.8,
+                  borderLeft: task.completed ? '3px solid #10b981' : '3px solid #f59e0b',
+                  marginLeft: '8px',
+                  borderRadius: '0 8px 8px 0'
+                }}
+              >
+                 <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%' }}>
+                   {task.text}
+                 </div>
+              </div>
+            ))}
           </div>
         </nav>
       </aside>
@@ -190,9 +221,24 @@ function App() {
                         autoFocus
                       />
                     ) : (
-                      <span className={`task-text ${task.completed ? 'completed' : ''}`}>
-                        {task.text}
-                      </span>
+                      <>
+                        <span className={`task-text ${task.completed ? 'completed' : ''}`}>
+                          {task.text}
+                        </span>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px', display: 'flex', gap: '8px', alignItems: 'center' }}>
+                          {task.completed ? (
+                            <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                              <CheckCircle2 size={12} color="#10b981" /> Concluída
+                            </span>
+                          ) : (
+                            <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                              <Clock size={12} color="#f59e0b" /> Pendente
+                            </span>
+                          )}
+                          <span>•</span>
+                          <span>{task.createdAt || new Date().toLocaleDateString('pt-BR')}</span>
+                        </div>
+                      </>
                     )}
                   </div>
 
