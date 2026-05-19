@@ -22,6 +22,14 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editValue, setEditValue] = useState('');
+  const [toast, setToast] = useState<{message: string, visible: boolean}>({ message: '', visible: false });
+
+  const showToast = (message: string) => {
+    setToast({ message, visible: true });
+    setTimeout(() => {
+      setToast({ message: '', visible: false });
+    }, 3000);
+  };
 
   // Carregar dados iniciais
   useEffect(() => {
@@ -117,7 +125,7 @@ function App() {
             <span>My Tasks</span>
           </div>
 
-          <div className="nav-item" onClick={() => alert('Área de Explorar em breve!')}>
+          <div className="nav-item" onClick={() => showToast('Área de Explorar em breve!')}>
             <Compass size={20} />
             <span>Explorar</span>
           </div>
@@ -160,6 +168,11 @@ function App() {
 
         <div className="header">
           <h1 className="header-title">My Tasks</h1>
+        </div>
+
+        {/* Notificação Toast */}
+        <div className={`toast-notification ${toast.visible ? 'show' : ''}`}>
+          {toast.message}
         </div>
 
         <div className="todo-container">
