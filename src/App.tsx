@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Menu, ListTodo, Plus, Pencil, Trash2, CheckSquare, Square, ClipboardList, Compass, Clock, CheckCircle2 } from 'lucide-react';
+import { Sun, Moon, Menu, ListTodo, Plus, Pencil, Trash2, CheckSquare, Square, ClipboardList, Compass, Clock, CheckCircle2, Heart, X, Copy } from 'lucide-react';
 import './index.css';
 
 // Usaremos localStorage como equivalente ao AsyncStorage em ambiente Web
@@ -23,6 +23,7 @@ function App() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editValue, setEditValue] = useState('');
   const [toast, setToast] = useState<{message: string, visible: boolean}>({ message: '', visible: false });
+  const [isDonateOpen, setIsDonateOpen] = useState(false);
 
   const showToast = (message: string) => {
     setToast({ message, visible: true });
@@ -128,6 +129,11 @@ function App() {
           <div className="nav-item" onClick={() => showToast('Área de Explorar em breve!')}>
             <Compass size={20} />
             <span>Explorar</span>
+          </div>
+
+          <div className="nav-item" onClick={() => setIsDonateOpen(true)}>
+            <Heart size={20} color="#ef4444" />
+            <span style={{ fontWeight: 600 }}>Apoiar Projeto</span>
           </div>
 
           <div className="history-section" style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
@@ -279,6 +285,39 @@ function App() {
           © 2026
         </footer>
       </main>
+
+      {/* Modal de Doação (PIX) */}
+      {isDonateOpen && (
+        <div className="modal-overlay" onClick={() => setIsDonateOpen(false)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Apoiar Projeto 💖</h2>
+              <button className="close-btn" onClick={() => setIsDonateOpen(false)}>
+                <X size={24} />
+              </button>
+            </div>
+            <p style={{ lineHeight: '1.5', color: 'var(--text-muted)' }}>
+              Se este aplicativo organizou sua vida, considere fazer uma doação de qualquer valor (50 centavos já ajuda o desenvolvedor a tomar um café!).
+            </p>
+            <div className="pix-section">
+              <span className="pix-label">Sua Chave PIX:</span>
+              <div className="pix-box">
+                <span className="pix-key">COLOQUE-SUA-CHAVE-AQUI</span>
+                <button 
+                  className="copy-btn" 
+                  onClick={() => {
+                    navigator.clipboard.writeText('COLOQUE-SUA-CHAVE-AQUI');
+                    showToast('Chave PIX copiada!');
+                  }} 
+                  title="Copiar Chave PIX"
+                >
+                  <Copy size={18} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

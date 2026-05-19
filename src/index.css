@@ -356,6 +356,103 @@ body {
   opacity: 1;
 }
 
+/* Modal PIX Donate */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(3px);
+}
+
+.modal-content {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 420px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modal-header h2 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.close-btn {
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+  color: var(--text-muted);
+  display: flex;
+  padding: 4px;
+}
+
+.close-btn:hover { 
+  color: var(--text-main); 
+}
+
+.pix-section {
+  margin-top: 20px;
+  background: var(--bg-color);
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.pix-label {
+  font-size: 0.80rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pix-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.pix-key {
+  font-weight: 600;
+  color: var(--text-main);
+  word-break: break-all;
+  font-size: 0.95rem;
+}
+
+.copy-btn {
+  background: var(--accent);
+  color: var(--accent-text);
+  border: none; 
+  padding: 8px; 
+  border-radius: 6px; 
+  cursor: pointer;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  margin-left: 12px;
+}
+
+.copy-btn:hover { 
+  opacity: 0.9; 
+}
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
   .app-container {
