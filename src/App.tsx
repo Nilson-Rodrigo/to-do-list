@@ -122,7 +122,7 @@ function App() {
             <span>Explorar</span>
           </div>
 
-          <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+          <div className="history-section" style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
             <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, paddingLeft: '16px', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               Histórico
             </span>

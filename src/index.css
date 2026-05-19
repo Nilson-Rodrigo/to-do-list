@@ -356,6 +356,12 @@ body {
   .nav-menu {
     flex-direction: row;
     margin-top: 0 !important;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .history-section {
+    display: none !important; /* Esconde o histórico em telas menores para não quebrar a barra */
   }
 
   .nav-item {
